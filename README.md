@@ -11,7 +11,7 @@ Golang apache common log format middleware. It sits between in the topmost level
 	    "log"
 	    "net/http"
 
-            "github.com/gleicon/go-httplogger"
+	    httplogger "github.com/gleicon/go-httplogger"
 	)
 
 	func helloHandler(w http.ResponseWriter, r *http.Request) {
@@ -24,7 +24,7 @@ Golang apache common log format middleware. It sits between in the topmost level
 	    serveMux.HandleFunc("/", helloHandler)
 	    srv := http.Server{
 		Addr:    ":8080",
-		Handler: HTTPLogger(serveMux),
+		Handler: httplogger.HTTPLogger(serveMux),
 	    }
 	    log.Fatal(srv.ListenAndServe())
 	}

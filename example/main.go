@@ -4,6 +4,8 @@ import (
 	"io"
 	"log"
 	"net/http"
+
+	httplogger "github.com/gleicon/go-httplogger"
 )
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
@@ -16,7 +18,7 @@ func main() {
 	serveMux.HandleFunc("/", helloHandler)
 	srv := http.Server{
 		Addr:    ":8080",
-		Handler: HTTPLogger(serveMux),
+		Handler: httplogger.HTTPLogger(serveMux),
 	}
 	log.Fatal(srv.ListenAndServe())
 }

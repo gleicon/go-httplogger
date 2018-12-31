@@ -30,3 +30,6 @@ Golang apache common log format middleware. It sits between in the topmost level
 	}
 
  
+### Example output
+
+	2018/12/31 12:20:33 HTTP - 127.0.0.1 - - [31/Dec/2018:12:20:33 +0100] "GET / HTTP/1.1" 200 12 "" "Wget/1.17.1 (linux-gnu)" 100351us

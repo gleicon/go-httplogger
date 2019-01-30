@@ -2,8 +2,8 @@ package httplogger
 
 import (
 	"log"
+	"net"
 	"net/http"
-	"strings"
 	"time"
 )
 
@@ -43,9 +43,11 @@ func HTTPLogger(handler http.Handler) http.Handler {
 		t := time.Now()
 		interceptWriter := stResponseWriter{w, 0, 0}
 
+		host, _, _ := net.SplitHostPort(r.RemoteAddr)
+
 		handler.ServeHTTP(&interceptWriter, r)
 		log.Printf("HTTP - %s - - %s \"%s %s %s\" %d %d \"%s\" \"%s\" %dus\n",
-			strings.Split(r.RemoteAddr, ":")[0],
+			host,
 			t.Format("[02/Jan/2006:15:04:05 -0700]"),
 			r.Method,
 			r.URL.Path,
